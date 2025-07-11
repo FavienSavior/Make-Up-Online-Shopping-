@@ -1,0 +1,184 @@
+#include <stdio.h> 
+
+//Exit confirmation FUNCTION (DECLARING A FUNCTION SO THE ENTIRE THING WOULD WORK WHEN EXITNG)
+int confirmExit() {
+    char confirm_exit;
+     printf("You have chosen Exit.\n");
+     printf("Do you confirm exit?: [y/n]\n"); //confirm message is here so that it won't print "Do you want to exit" because if placed after WHILE statement and user inputs an invalid number it will loop with the exit statement
+                scanf(" %c", &confirm_exit);  
+                if (confirm_exit == 'y'||confirm_exit=='Y'){
+                printf("Thank you for shopping please come again!\n");
+                return 1; 
+                }
+                else if (confirm_exit == 'n'||confirm_exit=='N')
+                {
+                printf("returning to selection\n");    
+                }
+                else { 
+                printf("Invalid selection please input y or n\n");
+                return 0;
+                }
+                
+}
+//==================================================================================
+
+int main() {
+
+//LOCAL DECLARATIONS
+
+//DECLARE VARIABLES
+int category;   // choose between Face Make-up  or Lips
+int products;  // Represents  Foundation, Concealer, Lip cream & Lip tint
+int shades;   // Shades per product
+int quantity = 0; // Quantity of items
+int exit_program = 0; // exit loop: 0 = continue (TRUE), 1 = exit (FALSE) 
+float Total_price;
+float price_Foundation = 384.00;
+float price_Concealer = 279.00;
+float price_Lipcream = 277.00;
+float price_Liptint = 277.00;
+char currency = 'P';
+//==================================================================================    
+//INTRO
+    printf("Welcome to Y.O.U BEAUTY Official PH \n\n");
+    printf("Find the Beauty in YOU as we offer a fine array of make-up products that are formulated in South Korea,\n" );
+    printf("infused with skincare loving ingredients that is dermatologically tested and highly recommended by fellow Filipinos nationa-wide!\n\n");
+//==================================================================================
+
+do{
+//CATEGORY SELECTION
+    printf("Please select a category:\n1)Face Make-Up \t 2)Lips \t 3)Exit\n");
+    scanf("%d", &category);
+    while (getchar() != '\n'); // clear input buffer
+//==================================================================================
+  //FACE CATEGORY
+    switch(category){
+    case 1:
+        printf("You have chosen Face Make-Up\n\n");  
+        printf("Please select the following products under Face Make-Up:\n");
+        printf("1) Foundation\n2) Concealer\n3) Back\n4) Exit\n\n");
+        scanf("%d", &products);
+    ///////////////////////////////////////////////////////////////////////////////
+        //PRODUCTS
+        //FOUNDATION
+          switch(products){
+            case 1:
+                printf("You have chosen Foundation\n");
+
+                 //FOUNDATION SHADE
+                     printf("Please select Foundation shades\n");
+                     printf("1) Shell Ivory\n2) Pink Sand\n3) Cream Beige\n");
+                     scanf("%d", &shades);
+                        switch(shades){
+                            case 1:
+                              printf("Shell Ivory\n");
+                              printf("Please input quantity: \n"); // QUANTITY
+                              scanf("%d",&quantity);
+                              
+                              break;
+                            case 2:
+                              printf("Pink Sand\n");break;
+                            case 3:
+                              printf("Cream Beige\n");break;
+                            default: 
+                              printf("Invalid, please select a shade\n");
+                            }  
+            break;       
+
+        //CONCEALER
+            case 2: 
+                printf("You have chosen Concealer\n");
+                 //CONCEALER SHADE
+                     printf("Please select Concealer shades\n");
+                     printf("1) Light\n2) Medium\n3) Golden\n");
+                     scanf("%d", &shades);
+                        switch(shades){
+                            case 1:
+                               printf("Light\n");break;
+                            case 2:
+                               printf("Medium\n");break;
+                            case 3:
+                               printf("Golden\n");break;
+                            default: 
+                                printf("Invalid, please select a shade\n");
+                            }    
+            break;  
+            case 3:
+                printf("Returning to category selection\n");
+            break;
+            case 4:
+                if (confirmExit()) return 0;
+                continue;
+            default:
+                printf("Invalid, please select a valid product  1) Foundation 2) Concealer\n");
+        }
+        break; //main product switch break
+//==================================================================================
+             
+  //LIPS CATEGORY
+    case 2:        
+        printf("Please select the following products under lips:\n");
+        printf("1) Lip Cream \n  2) Lip Tint\n 3) Back\n 4) Exit\n\n");
+        scanf("%d", &products);
+        ///////////////////////////////////////////////////////////////////////////////
+        //PRODUCTS
+        //LIP CREAM
+          switch(products){
+            case 1:
+                printf("You have selected Lip Cream\n");break;
+
+                 //LIP CREAM SHADE
+                    printf("Please select a Lip Cream shade\n");
+                    printf("1) Whisper\n2) Kindness\n3) Passion\n");
+                     scanf("%d", &shades);
+                        switch(shades){
+                            case 1:
+                              printf("Whisper\n");break;
+                            case 2:
+                              printf("Kindness\n");break;
+                            case 3:
+                              printf("Passion\n");break;
+                            default: 
+                              printf("Invalid, please select a valid shade\n");
+                            }  
+            break;       
+
+            case 2:
+                printf("You have selected Lip Tint\n");break;
+
+                //LIP TINT SHADE
+                   printf("Please select a Lip Tint shade\n");
+                   printf("1) Blushing Sky\n2) Misty Night\n3) Breezy Day\n");
+                     scanf("%d", &shades);
+                        switch(shades){
+                            case 1:
+                              printf("Blushing Sky\n");break;
+                            case 2:
+                              printf("Misty Night\n");break;
+                            case 3:
+                              printf("Breezy Day\n");break;
+                            default: 
+                              printf("Invalid, please select a valid shade\n");
+                            }  
+                break;       
+            case 3:
+                printf("Returning to category selection\n");break;
+            case 4:
+                if (confirmExit()) return 0;
+                continue;
+            default: 
+                printf("Invalid, please select a valid Lip product\n");
+        }  
+        break; // main Lip product break
+//==================================================================================
+    case 3: 
+        if (confirmExit()) return 0;
+        continue;
+    default:
+        printf("Invalid, please select valid category: 1)Face Make-up\t 2)Lips\t 3)Exit\n\n");
+        }
+ 
+}while (exit_program == 0);  // if user input is yes = print thank you for shopping message / if no category question repeats
+    
+    return 0;
+}
